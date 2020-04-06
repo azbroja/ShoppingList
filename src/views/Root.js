@@ -48,6 +48,7 @@ class Root extends React.Component {
   };
 
   editHandler = (event) => {
+    console.log(event);
     const id = this.state.list.findIndex(
       ({ name }) => name === event.target.parentNode.id
     );
@@ -59,11 +60,22 @@ class Root extends React.Component {
     });
   };
 
+  deleteItem = (event) => {
+    if (window.confirm("Potwierdz usuniecie produktu")) {
+      const list = [...this.state.list];
+      const idToDelete = list.findIndex(
+        ({ id }) => id === event.target.parentNode.id
+      );
+      const newlist = [...list.splice(idToDelete, 1)];
+      this.setState({ list: list });
+    }
+  };
+
   countHandler = (event) => {
     console.log({ event });
 
     const id = this.state.list.findIndex(
-      ({ id }) => id === event.target.parentNode.id
+      ({ name }) => name === event.target.parentNode.id
     );
     const secondaryList = [...this.state.list];
     secondaryList[id].count = event.target.value;
@@ -76,17 +88,6 @@ class Root extends React.Component {
     this.setState({
       limit: event.target.value,
     });
-  };
-
-  deleteItem = (event) => {
-    if (window.confirm("Potwierdz usuniecie produktu")) {
-      const list = [...this.state.list];
-      const idToDelete = list.findIndex(
-        ({ id }) => id === event.target.parentNode.id
-      );
-      const rm = [...list.splice(idToDelete, 1)];
-      this.setState({ list: list });
-    }
   };
 
   render() {
