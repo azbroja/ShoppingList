@@ -15,7 +15,7 @@ const EditItem = () => (
               {context.list.map((product) => (
                 <Edit
                   key={product.name}
-                  onDelete={context.deleteListItem}
+                  onDelete={context.deleteItem}
                   onEdit={context.editHandler}
                   onCount={context.countHandler}
                   {...product}

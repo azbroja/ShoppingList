@@ -52,7 +52,6 @@ class Root extends React.Component {
       ({ name }) => name === event.target.parentNode.id
     );
     const list = [...this.state.list];
-    console.log(list);
 
     list[id].name = event.target.value;
     this.setState({
@@ -73,7 +72,13 @@ class Root extends React.Component {
     });
   };
 
-  deleteListItem = (event) => {
+  limitOnChange = (event) => {
+    this.setState({
+      limit: event.target.value,
+    });
+  };
+
+  deleteItem = (event) => {
     if (window.confirm("Potwierdz usuniecie produktu")) {
       const list = [...this.state.list];
       const idToDelete = list.findIndex(
@@ -84,16 +89,10 @@ class Root extends React.Component {
     }
   };
 
-  limitOnChange = (event) => {
-    this.setState({
-      limit: event.target.value,
-    });
-  };
-
   render() {
     const contextElements = {
       ...this.state,
-      deleteListItem: this.deleteListItem,
+      deleteItem: this.deleteItem,
       editHandler: this.editHandler,
       countHandler: this.countHandler,
       addHandler: this.addHandler,

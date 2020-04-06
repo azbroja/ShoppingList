@@ -14,10 +14,10 @@ const Button = styled.button`
   text-transform: uppercase;
 `;
 
-const DelButton = ({ onDelete }) => (
+const Delete = ({ onDelete }) => (
   <Button onClick={onDelete} className={styles.button}>
     Usuń
   </Button>
 );
 
-export default DelButton;
+export default Delete;
